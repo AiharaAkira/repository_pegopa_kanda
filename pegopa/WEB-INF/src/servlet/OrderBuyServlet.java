@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
@@ -22,6 +23,8 @@ public class OrderBuyServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		int cmd = Integer.parseInt(request.getParameter("cmd"));
 		UniformDAO uniformDaoObj = new UniformDAO();
@@ -36,19 +39,13 @@ public class OrderBuyServlet extends HttpServlet {
 
 			request.setAttribute("cmd", "");
 
-			boolean result = false;
-
-			if(AccountDAO.loginCheck(result, request, response)) {
-
-				request.getRequestDispatcher("/logout").forward(request, response);
-
-				return;
-
-			}
 
 
 
 			if(cmd==1) {
+
+
+
 			uniform = uniformDaoObj.selectById(id);
 			int stock = uniform.getStock();
 			request.setAttribute("stock", stock);
@@ -82,6 +79,10 @@ public class OrderBuyServlet extends HttpServlet {
 			if(cmd==3) {
 				HttpSession hs = request.getSession();
 				Account a = (Account)hs.getAttribute("accountList");
+
+
+
+
 				int account_id = 0;
 				if(a != null) {
 					account_id = a.getId();
@@ -110,7 +111,10 @@ public class OrderBuyServlet extends HttpServlet {
 				uniform.setStock(stock-quantity);
 				uniformDaoObj.update(uniform);
 
-//				mail_buy(order);
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				System.out.println(timestamp);
+				order.setOrderdate(timestamp);
+				mail_buy(order);
 				request.setAttribute("order", order);
 
 				request.getRequestDispatcher("/view/orderBuyConfirm.jsp").forward(request, response);
@@ -133,30 +137,11 @@ public class OrderBuyServlet extends HttpServlet {
 
 	//修正する
 	private void mail_buy(Order order) {
+
 		DecimalFormat df = new DecimalFormat("###,###");
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日");
 		SimpleDateFormat sf1 = new SimpleDateFormat("E");
-		sf1.format(order.getOrderdate());
-		String day = "日";
-		switch (sf1.format(order.getOrderdate())) {
-		case "Mon":
-			day="月";
-			break;
-		case "Tue":
-			day="火";
-			break;
-		case "Wed":
-			day="水";
-			break;
-		case "Thur":
-			day="木";
-			break;
-		case "Fri":
-			day="金";
-			break;
-		default:
-			day="土";
-		}
+		String day = sf1.format(order.getOrderdate());
 		SimpleDateFormat sf2 = new SimpleDateFormat("HH時mm分");
 		String mail = order.getUser_name()+"様\r\n" +
 				"\r\n" +
@@ -167,9 +152,6 @@ public class OrderBuyServlet extends HttpServlet {
 				"お手数ですがお間違いないかご確認くださいませ。\r\n" +
 				"\r\n" +
 				"━━━　ご注文内容　━━━━━━━━━━━━━━━━━━━━━━━━\r\n" +
-				"\r\n" +
-				"【注文番号】\r\n" +
-				order.getId()+
 				"\n【注文日時】\r\n" +
 				sf.format(order.getOrderdate())+"("+day+") "+sf2.format(order.getOrderdate())+
 				"\n【ご注文内容】\r\n" +
@@ -211,11 +193,11 @@ public class OrderBuyServlet extends HttpServlet {
 				"電話番号：✖✖✖-✖✖✖✖-✖✖✖✖\r\n" +
 				"メールアドレス：■■■■@gmail.com\r\n" +
 				"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-		System.out.println(mail);
+
 		SendMail sendmail = new SendMail();
 
 
-		sendmail.setFromInfo("####", "株式会社神田ユニフォーム");
+		sendmail.setFromInfo("test.sender@kanda-it-school-system.com", "株式会社神田ユニフォーム");
 		//テスト用メール
 		sendmail.setRecipients(order.getEmail());
 		sendmail.setSubject("【神田ユニフォーム】ご注文ありがとうございます");

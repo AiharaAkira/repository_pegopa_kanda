@@ -263,48 +263,54 @@
 			return false;
 		}
 
-		let name = document.getElementById('name');
-		let address = document.getElementById('address');
-		let email = document.getElementById('email');
-		let pw = document.getElementById('pw');
-		let pwCheck = document.getElementById('pwCheck');
+		let u_name = document.getElementById('name');
+		let u_address = document.getElementById('address');
+		let u_email = document.getElementById('email');
+		let u_pw = document.getElementById('pw');
+		let u_pwCheck = document.getElementById('pwCheck');
 
 		function call() {
 
-			if (isEmpty(name) || checkSpace(email.value)) {
-				alert("名前を確認してください。");
-				name.value = "";
-				name.focus();
+			if (isEmpty(u_name) || lessThan(u_name, 2) || moreThan(u_name, 20)
+					|| checkNum(u_name.value) || checkSpace(u_name.value)
+					|| (pattern_spc.test(u_name.value))) {
+				alert("氏名を確認してください。");
+				u_name.value = "";
+				u_name.focus();
 				return false;
 			}
 
-			if (isEmpty(address) || checkSpace(email.value)) {
+
+			if (isEmpty(u_address) || checkSpace(u_address.value)) {
 				alert("住所を確認してください。");
-				address.value = "";
-				address.focus();
+				u_address.value = "";
+				u_address.focus();
 				return false;
 			}
 
-			if (isEmpty(email) || checkSpace(email.value)) {
-				alert("メールアドレスを確認してください。");
-				email.value = "";
-				email.focus();
+			if (isEmpty(u_email) || checkSpace(u_email.value)) {
+				alert("ユーザーIDを確認してください。");
+				u_email.value = "";
+				u_email.focus();
 				return false;
 			}
 
-			if (isEmpty(pw) || checkSpace(pw.value)) {
+			if (isEmpty(u_pw) || lessThan(u_pw, 8) || checkSpace(u_pw.value)
+					|| checkKor(u_pw.value) || CheckPassword(u_pw.value)) {
 				alert("パスワードを確認してください。");
-				pw.value = "";
-				pw.focus();
+				alert("パスワードは8文字以上の英文字・数字・記号の組み合わせのみ入力できます。");
+				u_pw.value = "";
+				u_pw.focus();
 				return false;
 			}
 
-			if (equalCheck(pw, pwCheck)) {
+			if (equalCheck(u_pw, u_pwCheck)) {
 				alert("パスワードを確認してください。");
-				pwCheck.value = "";
-				pwCheck.focus();
+				u_pwCheck.value = "";
+				u_pwCheck.focus();
 				return false;
 			}
+
 
 			let result = confirm('変更しますか？');
 

@@ -107,7 +107,7 @@ public class OrderHistoryListUpdateServlet extends HttpServlet {
 
 		SendMail sendmail = new SendMail();
 
-		sendmail.setFromInfo("####", "株式会社神田ユニフォーム");
+		sendmail.setFromInfo("test.sender@kanda-it-school-system.com", "株式会社神田ユニフォーム");
 		//テスト用メール
 		sendmail.setRecipients(order.getEmail());
 		sendmail.setSubject("【神田ユニフォーム】商品を発送いたしました。");

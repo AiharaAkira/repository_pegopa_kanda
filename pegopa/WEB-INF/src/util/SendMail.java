@@ -21,7 +21,7 @@ public class SendMail {
 	private static final String DEFAULT_CODE_TYPE = "iso-2022-jp";
 	private final Properties props = System.getProperties();
 	private MimeMessage mimeMessage = null;
-	private String userid = "##@#####";
+	private String userid = "test.receiver@kanda-it-school-system.com";
 	private String password = "kandaReceiver";
 	private String codeType;
 	private String text = "";

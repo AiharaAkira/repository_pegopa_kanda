@@ -108,8 +108,7 @@ public class AccountUpdateServlet extends HttpServlet {
 			if (error.equals("")) {
 
 				// エラーが無い場合はListServletにフォワード
-				request.setAttribute("cmd", cmd);
-				response.sendRedirect("view/confirm.jsp");
+				response.sendRedirect("view/confirmLogin.jsp?cmd= ");
 
 			}else if (error.equals("noSession")) {
 				request.getRequestDispatcher("/logout").forward(request, response);

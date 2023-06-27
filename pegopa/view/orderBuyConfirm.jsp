@@ -11,10 +11,7 @@ DecimalFormat df = new DecimalFormat("###,###");%>
 	</head>
 
 	<body>
-		<header style=" width:900px; display: flex; justify-content: center; align-items: center; margin: 50px auto 0 auto;">
-			<img src="img/logo.png" alt="logo" width="70" height="70">
-			<h1 style="padding-top:20px; margin-left: 12px; color: hotpink;"><span style="font-size: 0.8em; color: gray;">株式会社</span>神田ユニフォーム</h1>
-		</header>
+			<%@ include file="/common/header_user.jsp" %>
 			<hr size="8" color="LightPink" width="90%"></hr>
 
 		<h2 style="padding-top:20px; text-align: center; color: gray;">注文完了</h2>

@@ -1,6 +1,9 @@
 <%@page import="bean.Account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String cmd = (String) request.getAttribute("cmd");
+%>
 
 
 <!DOCTYPE html>
@@ -9,19 +12,14 @@
 <meta charset="UTF-8">
 <title>ログイン画面</title>
 
-
-<header
-	style="width: 900px; display: flex; justify-content: center; align-items: center; margin: 50px auto 0 auto;">
-	<img src="img/logo.png" alt="logo" width="70" height="70">
-	<h1 style="padding-top: 20px; margin-left: 12px; color: hotpink;">
-		<span style="font-size: 0.8em; color: gray;">株式会社</span>神田ユニフォーム
-	</h1>
-</header>
+<%@ include file="/common/header_user.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
 
 <body>
+
+
 	<hr size="8" color="LightPink" width="90%"></hr>
 	<h2 style="padding-top: 20px; text-align: center; color: gray;">ログイン</h2>
 
@@ -44,10 +42,13 @@
 				type="submit" value="ログイン">
 		</p>
 
-
-
+		<%
+			if (cmd != null) {
+		%>
 		<h4 style="text-align: center;"><%=request.getAttribute("cmd")%></h4>
-
+		<%
+			}
+		%>
 	</form>
 
 	<br>

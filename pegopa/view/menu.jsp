@@ -36,11 +36,7 @@ a:hover {
 	%>
 	<!-- 管理者画面 -->
 	<div align="center">
-			<header style=" width:900px; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
-				<img src="img/logo.png" alt="logo" width="70" height="70">
-				<h1 style="padding-top:20px; margin-left: 12px;">株式会社神田ユニフォーム</h1>
-				<h1 style="padding-top:20px;"></h1>
-				</header>
+			<%@ include file="/common/header_admin.jsp" %>
 				<%@ include file="/view/userInfo.jsp" %>
 			<hr width="90%"></hr>
 
@@ -58,14 +54,7 @@ a:hover {
 	%>
 	<!-- ユーザー画面 -->
 	<div align="center">
-
-		<header
-			style="width: 900px; display: flex; justify-content: center; align-items: center; margin: 50px auto 0 auto;">
-			<img src="img/logo.png" alt="logo" width="70" height="70">
-			<h1 style="padding-top: 20px; margin-left: 12px; color: hotpink;">
-				<span style="font-size: 0.8em; color: gray;">株式会社</span>神田ユニフォーム
-			</h1>
-		</header>
+		<%@ include file="/common/header_user.jsp" %>
 		<%@ include file="/view/userInfo.jsp" %>
 		<hr size="8" color="LightPink" width="90%"></hr>
 
