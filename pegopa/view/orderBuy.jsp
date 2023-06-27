@@ -15,11 +15,17 @@ if(request.getAttribute("stock")!=null) {
 <title>注文画面</title>
 </head>
 	<body>
-	<%@ include file="/common/header_user.jsp" %>
+			<header
+			style="width: 900px; display: flex; justify-content: center; align-items: center; margin: 50px auto 0 auto;">
+			<img src="https://postfiles.pstatic.net/MjAyMzA2MjdfMjcy/MDAxNjg3ODMxMTk3NzMx.y2U6FThvXwdOi9XToRwE2N4H_hRXqdkBoCeK2m9852Mg.qxG3IdUM9aHf2hR4frt1B7kkSVwn5eb_OthgeJAIE04g.PNG.hyh3700/logo.png?type=w773" alt="logo" width="70" height="70">
+			<h1 style="padding-top: 20px; margin-left: 12px; color: hotpink;">
+				<span style="font-size: 0.8em; color: gray;">株式会社</span>神田ユニフォーム
+			</h1>
+		</header>
 			<table align="left" style="padding-bottom:5px; padding-left:10%;">
 				<tr>
 					<td align="center"><a href="<%=request.getContextPath()%>/view/menu.jsp" style="text-decoration:none; color: gray; font-weight: 900;">【メニュー】</a></td>
-					<td align="center"><a href="<%=request.getContextPath() %>/uniformList" style="text-decoration:none; color: gray; font-weight: 900;">【詳細一覧】</a></td>
+					<td align="center"><a href="<%=request.getContextPath() %>/uniformList" style="text-decoration:none; color: gray; font-weight: 900;">【商品一覧】</a></td>
 				</tr>
 			</table>
 		<hr size="8" color="LightPink" width="90%"></hr>

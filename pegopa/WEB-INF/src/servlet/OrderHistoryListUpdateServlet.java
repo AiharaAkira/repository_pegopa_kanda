@@ -48,12 +48,12 @@ public class OrderHistoryListUpdateServlet extends HttpServlet {
 
 			if(cmd==2) {
 				orderDaoObj.updateOrder(orderid, deposit, shipping);
-				if((!deposit_origin.equals("deposit"))&&deposit.equals("入金済")) {
+				if((!deposit_origin.equals(deposit))&&deposit.equals("入金済")) {
 					//入金状況変更メール送信
 					order = orderDaoObj.selectByOrderID(orderid);
 					mail_deposit(order);
 				}
-				if((!shipping_origin.equals("shipping"))&&shipping.equals("発送済")) {
+				if((!shipping_origin.equals(shipping))&&shipping.equals("発送済")) {
 					//発送状況変更メール送信
 					order = orderDaoObj.selectByOrderID(orderid);
 					mail_shipping(order);

@@ -9,7 +9,11 @@
 	</head>
 	<body>
 		<div align="center">
-			<%@ include file="/common/header_user.jsp" %>
+			<header style=" width:900px; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+			<img src="https://postfiles.pstatic.net/MjAyMzA2MjdfMjcy/MDAxNjg3ODMxMTk3NzMx.y2U6FThvXwdOi9XToRwE2N4H_hRXqdkBoCeK2m9852Mg.qxG3IdUM9aHf2hR4frt1B7kkSVwn5eb_OthgeJAIE04g.PNG.hyh3700/logo.png?type=w773" alt="logo" width="70" height="70">
+				<h1 style="padding-top:20px; margin-left: 12px;">株式会社神田ユニフォーム</h1>
+				<h1 style="padding-top:20px;"></h1>
+		</header>
 
 			<table align="left" style="padding-bottom:5px; padding-left:10%;">
 				<tr>
@@ -41,7 +45,7 @@
 				<tr>
 					<th bgcolor="#66CC99" width="130">画像</th>
 					<td><img src="img/<%=uniform.getImg() %>" alt="img" width="70" height="70">
-					<input type=file size="25" name="img" ></input></td>
+					<input id="file" type=file size="25" name="img" ></input></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -253,6 +257,7 @@
 	let name = document.getElementById('name');
 	let price = document.getElementById('price');
 	let stock = document.getElementById('stock');
+	let file = document.getElementById('file');
 
 	function call() {
 
@@ -288,6 +293,11 @@
 			alert("数字を入力してください。");
 			stock.value = "";
 			stock.focus();
+			return false;
+		}
+
+		if(isNotType(file, "jpg")&&isNotType(file, "png")){
+			alert("ファイルの拡張子を確認してください。");
 			return false;
 		}
 
