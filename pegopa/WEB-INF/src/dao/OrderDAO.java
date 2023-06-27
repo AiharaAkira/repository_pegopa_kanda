@@ -40,9 +40,7 @@ public class OrderDAO {
 		ArrayList<Order> orderList = new ArrayList<Order>();
 
 		try {
-
-			String sql = "select o.id, o.email, o.user_name, o.address, o.quantity, o.orderdate, o.content, o.deposit, o.shipping, o.account_id, o.uniform_id, u.name, u.price from uniform u, orderitem o where u.id=o.uniform_id order by o.id desc";
-
+			String sql = "select * from orderitem order by id desc";
 			con = getConnection();
 			smt = con.createStatement();
 			rs = smt.executeQuery(sql);
@@ -62,7 +60,7 @@ public class OrderDAO {
 				order.setShipping(rs.getString("shipping"));
 				order.setAccount_id(rs.getInt("account_id"));
 				order.setUniform_id(rs.getInt("uniform_id"));
-				order.setUniform_name(rs.getString("name"));
+				order.setUniform_name(rs.getString("uniform_name"));
 				order.setPrice(rs.getInt("price"));
 
 				orderList.add(order);
@@ -104,8 +102,7 @@ public class OrderDAO {
 		Order order = new Order();
 
 		try {
-
-			String sql = "select o.id, o.email, o.user_name, o.address, o.quantity, o.orderdate, o.content, o.deposit, o.shipping, o.account_id, o.uniform_id, u.name, u.price from uniform u, orderitem o where u.id=o.uniform_id AND o.id = "+ orderid;
+			String sql = "select * from orderitem where id="+orderid;
 
 			con = getConnection();
 			smt = con.createStatement();
@@ -125,7 +122,7 @@ public class OrderDAO {
 				order.setShipping(rs.getString("shipping"));
 				order.setAccount_id(rs.getInt("account_id"));
 				order.setUniform_id(rs.getInt("uniform_id"));
-				order.setUniform_name(rs.getString("name"));
+				order.setUniform_name(rs.getString("uniform_name"));
 				order.setPrice(rs.getInt("price"));
 
 			}
@@ -167,7 +164,6 @@ public class OrderDAO {
 		Order order = new Order();
 
 		try {
-
 			String sql = "UPDATE orderitem SET deposit='"+deposit+"', shipping='"+shipping+"' WHERE id="+orderid;
 
 			con = getConnection();
@@ -195,7 +191,7 @@ public class OrderDAO {
 
 		try {
 			//SQL文
-			String sql ="insert INTO orderitem(email, user_name, address, quantity, content, account_id, uniform_id) values('"+order.getEmail()+"', '"+order.getUser_name()+"', '"+order.getAddress()+"', "+order.getQuantity()+", '"+order.getContent()+"', "+order.getAccount_id()+", "+order.getUniform_id()+")";
+			String sql ="insert INTO orderitem(email, user_name, address, quantity, content, account_id, uniform_id, uniform_name, price) values('"+order.getEmail()+"', '"+order.getUser_name()+"', '"+order.getAddress()+"', "+order.getQuantity()+", '"+order.getContent()+"', "+order.getAccount_id()+", "+order.getUniform_id()+", '"+order.getUniform_name()+"', "+order.getPrice()+")";
 			con = getConnection();
 			smt = con.createStatement();
 
@@ -229,8 +225,7 @@ public class OrderDAO {
 
 		try {
 
-			String sql = "select o.id, o.email, o.user_name, o.address, o.quantity, o.orderdate, o.content, o.deposit, o.shipping, o.account_id, o.uniform_id, u.name, u.price from uniform u, orderitem o where u.id=o.uniform_id  AND o.account_id="+id+" order by o.id desc";
-
+			String sql = "select * from orderitem where account_id="+id+" order by id desc";
 			con = getConnection();
 			smt = con.createStatement();
 			rs = smt.executeQuery(sql);
@@ -250,7 +245,7 @@ public class OrderDAO {
 				order.setShipping(rs.getString("shipping"));
 				order.setAccount_id(rs.getInt("account_id"));
 				order.setUniform_id(rs.getInt("uniform_id"));
-				order.setUniform_name(rs.getString("name"));
+				order.setUniform_name(rs.getString("uniform_name"));
 				order.setPrice(rs.getInt("price"));
 
 				orderList.add(order);
