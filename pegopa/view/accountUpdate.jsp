@@ -82,9 +82,9 @@
 						type=text size="25" name="address"></input></td>
 				</tr>
 				<tr>
-					<td><input id="email" value="<%=a.getEmail()%>"
+					<td><%=a.getEmail()%><input id="email" value="<%=a.getEmail()%>"
 						style="border-radius: 12px; border: 3px solid pink; outline: none;"
-						type=text size="25" placeholder="メールアドレス" name="email"></input></td>
+						type="hidden" size="25" placeholder="メールアドレス" name="email"></input></td>
 				</tr>
 
 				<tr>

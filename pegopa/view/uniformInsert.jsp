@@ -278,10 +278,15 @@
 			return false;
 		}
 
-		if(isNotType(file, "jpg")&&isNotType(file, "png")){
-			alert("ファイルの拡張子を確認してください。");
-			return false;
+
+		if(!isEmpty(file)){
+			if(isNotType(file, "jpg")&&isNotType(file, "png")){
+				alert("ファイルの拡張子を確認してください。");
+				return false;
+			}
+
 		}
+
 
 		if (cnt == 1) {
 			return false;

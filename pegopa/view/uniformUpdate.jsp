@@ -24,6 +24,17 @@
 			</table>
 			<hr color="black" width="90%"></hr>
 
+
+	<%if(uniform.getName()==null){ %>
+	<!-- データベースにないデータで入った時 -->
+
+			<h3 style="text-align: center; color: gray;">商品が見つかりません。</h3>
+			<div align = "center">
+			<a style="display: inline-block; margin-top: 50px; border: 1px solid black; border-radius: 4px; padding: 4px 8px; cursor: pointer; color: black; text-decoration: none;"  href = "<%=request.getContextPath() %>/uniformList">戻る</a>
+			</div>
+
+	<%}else{ %>
+	<!-- 正常ルート -->
 			<h2 style="padding-top:20px;" align = "center">商品情報詳細</h2>
 
 			<form action="<%=request.getContextPath() %>/uniformUpdate" method="post" enctype="multipart/form-data" onsubmit="return call();">
@@ -64,6 +75,16 @@
 				<input style="background: none; border: 1px solid black; border-radius: 4px; padding: 2px 6px;" type="submit" value="削除">
 			</form>
 		</div>
+
+
+
+	<%} %>
+
+
+
+
+
+
 		</div>
 
 				<script type="text/javascript">
@@ -296,9 +317,12 @@
 			return false;
 		}
 
-		if(isNotType(file, "jpg")&&isNotType(file, "png")){
-			alert("ファイルの拡張子を確認してください。");
-			return false;
+		if(!isEmpty(file)){
+			if(isNotType(file, "jpg")&&isNotType(file, "png")){
+				alert("ファイルの拡張子を確認してください。");
+				return false;
+			}
+
 		}
 
 		if (cnt == 1) {

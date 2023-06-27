@@ -25,6 +25,15 @@ DecimalFormat df = new DecimalFormat("###,###");%>
 			</table>
 			<hr width="90%"></hr>
 
+			<%if(order.getUniform_name()==null){ %>
+			<!-- データベースにないデータで入った時 -->
+			<h3 style="text-align: center; color: gray;">データが見つかりません。</h3>
+			<div align = "center">
+			<a style="display: inline-block; margin-top: 50px; border: 1px solid black; border-radius: 4px; padding: 4px 8px; cursor: pointer; color: black; text-decoration: none;"  href = "<%=request.getContextPath() %>/orderHistory">戻る</a>
+			</div>
+
+			<%}else{ %>
+			<!-- 正常ルート -->
 			<h2 style="padding-top:20px; text-align: center;">受注詳細</h2>
 
 			<div style="display: flex; flex-direction: column; padding: 0 10%;">
@@ -90,6 +99,9 @@ DecimalFormat df = new DecimalFormat("###,###");%>
 				</form>
 			</table>
 			</div>
+
+			<%} %>
+
 		</div>
 	</body>
 </html>
