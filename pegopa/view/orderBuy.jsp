@@ -16,7 +16,6 @@ if(request.getAttribute("stock")!=null) {
 </head>
 	<body>
 	<%@ include file="/common/header_user.jsp" %>
-	<%@ include file="/view/userInfo.jsp" %>
 			<table align="left" style="padding-bottom:5px; padding-left:10%;">
 				<tr>
 					<td align="center"><a href="<%=request.getContextPath()%>/view/menu.jsp" style="text-decoration:none; color: gray; font-weight: 900;">【メニュー】</a></td>
