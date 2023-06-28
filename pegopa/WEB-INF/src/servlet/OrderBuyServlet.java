@@ -103,7 +103,6 @@ public class OrderBuyServlet extends HttpServlet {
 				uniformDaoObj.update(uniform);
 
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				System.out.println(timestamp);
 				order.setOrderdate(timestamp);
 				mail_buy(order);
 				request.setAttribute("order", order);
@@ -114,9 +113,6 @@ public class OrderBuyServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			// エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-			System.out.println("dbエラー");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 

@@ -66,8 +66,6 @@ public class UniformUpdateServlet extends HttpServlet {
 
 		}catch(Exception e) {
 			//エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 
@@ -103,18 +101,19 @@ public class UniformUpdateServlet extends HttpServlet {
 		uniform.setStock(stock);
 		if(img==null||img.equals("")) uniform.setImg(img_original);
 		else uniform.setImg(img);
-		System.out.println(img);
-		System.out.println(img_original);
-		System.out.println("uniform.getImg: "+uniform.getImg());
 
 		try{
+			Uniform uniform1 = uniformDaoObj.selectById(id);
+			if(uniform1.getName()==null) {
+
+				request.setAttribute("uniform", uniform1);
+				request.getRequestDispatcher("/view/uniformUpdate.jsp").forward(request, response);
+
+			}
 			uniformDaoObj.update(uniform);
-			System.out.println("update成功");
 
 		}catch(Exception e) {
 			//エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 

@@ -65,8 +65,6 @@ public class OrderHistoryListUpdateServlet extends HttpServlet {
 
 		}catch(Exception e) {
 			//エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 

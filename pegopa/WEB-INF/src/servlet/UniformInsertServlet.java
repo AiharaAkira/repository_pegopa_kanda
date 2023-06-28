@@ -58,11 +58,9 @@ public class UniformInsertServlet extends HttpServlet {
 			}
 
 			uniformDaoObj.insert(uniform);
-			System.out.println("insert成功");
+
 		} catch (Exception e) {
 			// エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 

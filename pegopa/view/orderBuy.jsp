@@ -59,7 +59,7 @@ if(request.getAttribute("stock")!=null) {
 				</tr>
 				<tr>
 				<th style=  "width:200px; color: gray;">メールアドレス：</th>
-				<th><input id="email" style="width: 220px; height: 22px; border-radius: 12px; border: 3px solid pink; outline: none;" type=text size="25" name="email"></input></hd>
+				<th><input id="email" style="width: 220px; height: 22px; border-radius: 12px; border: 3px solid pink; outline: none;" type=email size="25" name="email"></input></hd>
 				</tr>
 				<tr>
 					<th style= "width:200px; color: gray;">個数：</th>

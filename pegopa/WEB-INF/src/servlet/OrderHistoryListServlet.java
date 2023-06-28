@@ -23,7 +23,7 @@ public class OrderHistoryListServlet extends HttpServlet {
 		HttpSession hs = request.getSession();
 		Account a = (Account)hs.getAttribute("accountList");
 
-		// ① UniformDAOをインスタンス化する
+		// ① orderDAOをインスタンス化する
 		OrderDAO orderDaoObj = new OrderDAO();
 		ArrayList<Order> list = new ArrayList<Order>();
 		SimpleDateFormat sf = new SimpleDateFormat( "MM" );
@@ -38,7 +38,7 @@ public class OrderHistoryListServlet extends HttpServlet {
 		// 日時情報を指定フォーマットの文字列で取得
 		int nowmonth = Integer.parseInt(sf.format( dateObj ));
 
-		// ②関連メソッドを呼び出し、戻り値としてUniformオブジェクトのリストを取得する
+		// ②関連メソッドを呼び出し、戻り値としてorderオブジェクトのリストを取得する
 		try{
 
 			request.setAttribute("cmd", "");
@@ -71,8 +71,6 @@ public class OrderHistoryListServlet extends HttpServlet {
 
 		}catch(Exception e) {
 			//エラー画面へ移動
-			request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//			request.setAttribute("cmd", "logout");
 			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 
@@ -84,14 +82,11 @@ public class OrderHistoryListServlet extends HttpServlet {
 		}else {
 			//ユーザー
 			int id = a.getId();
-			System.out.println(id);
 			try{
 				list = orderDaoObj.selectByUserId(id);
 
 			}catch(Exception e) {
 				//エラー画面へ移動
-				request.setAttribute("error", "DB接続エラーの為、一覧表示は行えませんでした。");
-//				request.setAttribute("cmd", "logout");
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 
