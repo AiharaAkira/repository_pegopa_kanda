@@ -132,11 +132,9 @@ public class SendMail {
 			Transport.send(mimeMessage);
 
 			// 送信成功
-			System.out.println("送信に成功しました。");
 		} catch (MessagingException e) {
 			// 送信失敗
 			e.printStackTrace();
-			System.out.println("送信に失敗しました。");
 		}
 	}
 }
