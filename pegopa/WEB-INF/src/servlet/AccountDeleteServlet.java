@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.swing.plaf.basic.BasicScrollPaneUI.HSBChangeListener;
 
 import bean.Account;
 import dao.AccountDAO;
+import dao.OrderDAO;
 
 public class AccountDeleteServlet extends HttpServlet {
 
@@ -20,7 +23,23 @@ public class AccountDeleteServlet extends HttpServlet {
 		String cmd = "";
 		String link = "";
 
+		try {
 
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
 
 		try {
 
@@ -32,8 +51,6 @@ public class AccountDeleteServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 
 		} catch (IllegalStateException e) {
-
-
 			e.printStackTrace();
 		} catch (Exception e) {
 
@@ -47,10 +64,10 @@ public class AccountDeleteServlet extends HttpServlet {
 				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/accountDelete.jsp").forward(request, response);
 
-			}else if (error.equals("noSession")) {
+			} else if (error.equals("noSession")) {
 				request.getRequestDispatcher("/logout").forward(request, response);
 
-			}  else {
+			} else {
 
 				// エラーが有る場合はerror.jspにフォワードする
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
@@ -62,9 +79,30 @@ public class AccountDeleteServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+
+
 		String error = "";
 		String cmd = "";
 		String link = "";
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
 
 
 
@@ -107,7 +145,7 @@ public class AccountDeleteServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 
-
+			error = "DBError";
 			e.printStackTrace();
 		} catch (Exception e) {
 

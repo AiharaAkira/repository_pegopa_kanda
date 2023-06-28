@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
 import dao.AccountDAO;
+import dao.OrderDAO;
 
 public class AccountInsertServlet extends HttpServlet {
 
@@ -18,6 +19,25 @@ public class AccountInsertServlet extends HttpServlet {
 		String error = "";
 		String cmd = "";
 		String link = "";
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
+
 
 		try {
 
@@ -55,6 +75,25 @@ public class AccountInsertServlet extends HttpServlet {
 		String cmd = "";
 		String link = "";
 
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
+
 		try {
 
 			String name = request.getParameter("name");
@@ -74,7 +113,7 @@ public class AccountInsertServlet extends HttpServlet {
 			AccountDAO.insert(a);
 
 		} catch (IllegalStateException e) {
-
+			error = "DBError";
 			e.printStackTrace();
 		} catch (Exception e) {
 

@@ -1,15 +1,6 @@
 <web-app>
 
-<!--
-	<servlet>
-		<servlet-name>homeMapping</servlet-name>
-		<servlet-class>servlet.LoginServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>homeMapping</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	-->
+
 
 	<servlet>
 		<servlet-name>loginMapping</servlet-name>

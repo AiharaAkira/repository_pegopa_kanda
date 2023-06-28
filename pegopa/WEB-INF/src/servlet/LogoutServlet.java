@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDAO;
+import dao.OrderDAO;
 
 public class LogoutServlet extends HttpServlet {
 
@@ -19,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
 		String cmd = "";
 		String link = "";
 
+
 		try {
 
 			request.setCharacterEncoding("UTF-8");
@@ -28,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 
-
+			error = "DBError";
 			e.printStackTrace();
 		} catch (Exception e) {
 

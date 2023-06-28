@@ -268,7 +268,7 @@ if(request.getAttribute("stock")!=null) {
 	}
 
 	function confirm(){
-		alert("購入しますか？");
+		confirm("購入しますか？");
 	}
 
 

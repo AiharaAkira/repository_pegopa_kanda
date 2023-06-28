@@ -20,8 +20,8 @@ public class AccountDAO {
 
 		if (account == null) {
 
-				result = true;
-				return result;
+			result = true;
+			return result;
 
 		}
 
@@ -49,7 +49,6 @@ public class AccountDAO {
 
 		try {
 			String sql = "select * from account where email = '" + name + "'";
-			System.out.println(sql);
 			con = DBManager.getConnection();
 			smt = con.createStatement();
 			rs = smt.executeQuery(sql);
@@ -72,16 +71,12 @@ public class AccountDAO {
 					hs.setAttribute("accountList", a);
 					hs.setMaxInactiveInterval(1800);
 
-					System.out.println("login success");
-
 				} else {
-					System.out.println("pw worng!");
 					a = null;
 
 				}
 			} else {
 
-				System.out.println("no userdata");
 				a = null;
 			}
 
@@ -116,14 +111,11 @@ public class AccountDAO {
 			String sql = "INSERT INTO account (pw,name,address,email,authority)" + "VALUES('" + a.getPw() + "','"
 					+ a.getName() + "','" + a.getAddress() + "','" + a.getEmail() + "'," + a.getAuthority() + ")";
 			;
-			System.out.println(sql);
 			con = DBManager.getConnection();
 			smt = con.createStatement();
 			if (smt.executeUpdate(sql) >= 1) {
 
-				System.out.println("success");
 			} else {
-				System.out.println("fail");
 			}
 
 		} catch (Exception e) {
@@ -143,14 +135,11 @@ public class AccountDAO {
 		try {
 			String sql = "update account set name = '" + a.getName() + "',pw='" + a.getPw() + "',address='"
 					+ a.getAddress() + "',email='" + a.getEmail() + "' " + "where id = " + a.getId();
-			System.out.println(sql);
 			con = DBManager.getConnection();
 			smt = con.createStatement();
 			if (smt.executeUpdate(sql) >= 1) {
 
-				System.out.println("success");
 			} else {
-				System.out.println("fail");
 			}
 
 		} catch (Exception e) {
@@ -171,15 +160,12 @@ public class AccountDAO {
 		try {
 			String sql = "delete from account where email ='" + a.getEmail() + "'and pw='" + a.getPw() + "'and name ='"
 					+ a.getName() + "'";
-			System.out.println(sql);
 			con = DBManager.getConnection();
 			smt = con.createStatement();
 			if (smt.executeUpdate(sql) >= 1) {
 
-				System.out.println("success");
 				result = 1;
 			} else {
-				System.out.println("fail");
 				result = 0;
 			}
 
@@ -200,7 +186,6 @@ public class AccountDAO {
 		try {
 
 			String sql = "select * from account where email = '" + name + "'";
-			System.out.println(sql);
 
 			con = DBManager.getConnection();
 			smt = con.createStatement();
@@ -208,7 +193,6 @@ public class AccountDAO {
 
 			if (rs.next()) {
 
-				System.out.println("login success");
 				return false;
 			}
 
@@ -229,16 +213,13 @@ public class AccountDAO {
 		try {
 
 			String sql = "select * from account where email = '" + name + "' and pw = '" + pw + "'";
-			System.out.println(sql);
 
 			con = DBManager.getConnection();
 			smt = con.createStatement();
 			rs = smt.executeQuery(sql);
-			System.out.println("----------");
 
 			if (rs.next()) {
 
-				System.out.println("success");
 				return false;
 			} else {
 				return true;
@@ -260,7 +241,6 @@ public class AccountDAO {
 		try {
 
 			String sql = "select * from account where email = '" + name + "'";
-			System.out.println(sql);
 
 			con = DBManager.getConnection();
 			smt = con.createStatement();
@@ -268,7 +248,6 @@ public class AccountDAO {
 
 			if (rs.next()) {
 
-				System.out.println("success");
 				return true;
 			} else {
 				return false;

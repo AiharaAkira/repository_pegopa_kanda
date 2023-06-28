@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.corba.se.impl.resolver.ORBDefaultInitRefResolverImpl;
+
 import dao.AccountDAO;
+import dao.OrderDAO;
 
 public class LoginServlet extends HttpServlet {
 
@@ -16,6 +19,24 @@ public class LoginServlet extends HttpServlet {
 		String error = "";
 		String cmd = "";
 		String link = "";
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
 
 		try {
 
@@ -49,9 +70,7 @@ public class LoginServlet extends HttpServlet {
 				// エラーが有る場合はerror.jspにフォワードする
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 
-
 			}
-
 
 		}
 
@@ -65,10 +84,29 @@ public class LoginServlet extends HttpServlet {
 
 		try {
 
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
+
+		try {
+
 			request.setCharacterEncoding("UTF-8");
 
 			String name = request.getParameter("name");
 			String pw = request.getParameter("pw");
+
 
 			if (AccountDAO.searchByEmailPw(name, pw)) {
 
@@ -86,8 +124,9 @@ public class LoginServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 
-
+			error = "DBError";
 			e.printStackTrace();
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -107,11 +146,13 @@ public class LoginServlet extends HttpServlet {
 				// エラーが有る場合
 				request.getRequestDispatcher("/view/login.jsp").forward(request, response);
 
+			}else if(error.equals("DBError")){
+				// エラーが有る場合はerror.jspにフォワードする
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			} else {
+				// エラーが有る場合はerror.jspにフォワードする
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
-
-			// エラーが有る場合はerror.jspにフォワードする
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 
 		}
 

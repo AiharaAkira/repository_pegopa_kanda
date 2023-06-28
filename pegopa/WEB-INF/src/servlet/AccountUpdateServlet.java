@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import dao.AccountDAO;
+import dao.OrderDAO;
 
 public class AccountUpdateServlet extends HttpServlet {
 
@@ -17,6 +18,24 @@ public class AccountUpdateServlet extends HttpServlet {
 		String error = "";
 		String cmd = "";
 		String link = "";
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
 
 
 
@@ -30,7 +49,7 @@ public class AccountUpdateServlet extends HttpServlet {
 			}
 
 		} catch (IllegalStateException e) {
-
+			error = "DBError";
 
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -63,6 +82,25 @@ public class AccountUpdateServlet extends HttpServlet {
 		String error = "";
 		String cmd = "";
 		String link = "";
+
+
+		try {
+
+			OrderDAO oda = new OrderDAO();
+			oda.selectAll();
+
+
+		} catch (IllegalStateException e) {
+
+			error = "DBError";
+			e.printStackTrace();
+
+		}finally {
+			if(error.equals("DBError")) {
+				request.getRequestDispatcher("/view/error.jsp").forward(request,response);
+				return;
+			}
+		}
 
 
 		try {
