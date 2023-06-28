@@ -245,11 +245,9 @@
 			var chk_special = upw
 					.search(/(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{8,20}/);
 			if (chk_num < 0 || chk_eng < 0 || chk_special < 0) {
-				alert("8文字以上パスワードは英文字・数字・記号の組み合わせのみ入力できます。");
 				return true;
 			}
 			if (/(\w)\1\1\1/.test(upw)) {
-				alert("4回以上連続文字は入力できません。");
 				return true;
 			}
 
@@ -297,8 +295,7 @@
 
 			if (isEmpty(u_pw) || lessThan(u_pw, 8) || checkSpace(u_pw.value)
 					|| checkKor(u_pw.value) || CheckPassword(u_pw.value)) {
-				alert("パスワードを確認してください。");
-				alert("パスワードは8文字以上の英文字・数字・記号の組み合わせのみ入力できます。");
+				alert("パスワードを正しい形式で入力してください。");
 				u_pw.value = "";
 				u_pw.focus();
 				return false;
