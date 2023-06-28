@@ -18,8 +18,8 @@
 			<table align="left" style="padding-bottom:5px; padding-left:10%;">
 				<tr>
 					<td align="center"><a href="<%=request.getContextPath() %>/view/menu.jsp" style="text-decoration:none;">【メニュー】</a></td>
+					<td align="center"><a href="<%=request.getContextPath() %>/uniformList" style="text-decoration:none;">【商品一覧】</a></td>
 					<td align="center"><a href="<%=request.getContextPath() %>/orderHistory" style="text-decoration:none;">【受注状況一覧】</a></td>
-					<td align="center"><a href="<%=request.getContextPath() %>/view/login.jsp" style="text-decoration:none;">【ログアウト】</a></td>
 				</tr>
 			</table>
 			<hr color="black" width="90%"></hr>
